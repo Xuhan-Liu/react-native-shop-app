@@ -1,14 +1,15 @@
-import React from 'react'
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, Alert, Button, FlatList, StyleSheet, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../../constant/Colors'
 import CartItem from '../../components/shop/CartItem'
 import cartActions from '../../store/action/cart'
-import orderActions from '../../store/action/order'
-import OrderScreen from './OrderScreen'
+import * as orderActions from '../../store/action/order'
 import Card from '../../components/UI/Card'
 
 const CartScreen = props => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
   const dispatch = useDispatch()
   const cartTotalAmount = useSelector(state => state.cart.sum)
   const cartItems = useSelector(state => {
@@ -22,15 +23,32 @@ const CartScreen = props => {
     return transformedCartItems.sort((a, b) => a.productId > b.productId ? 1 : 0)
   })
 
+  useEffect(() => {
+    if (error) {
+      Alert.alert('An error occur', error, [{ text: 'Okay' }])
+    }
+  }, [error])
+
+  const createOrderHandler = async () => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      await dispatch(orderActions.createOrderAsync({
+        items: cartItems,
+        totalAmount: cartTotalAmount
+      }))
+    } catch (e) {
+      setError(e)
+    }
+    setIsLoading(false)
+  }
+
   return (
     <View style={styles.screen}>
       <Card style={styles.summary}>
         <Text style={styles.summaryText}>Total: <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text></Text>
-        <Button disabled={cartItems.length === 0} title="Order Now"
-                onPress={() => dispatch(orderActions.addOrder({
-                  items: cartItems,
-                  totalAmount: cartTotalAmount
-                }))}/>
+        {isLoading ? <ActivityIndicator size="small" color={Colors.primary}/>
+          : <Button disabled={cartItems.length === 0} title="Order Now" onPress={createOrderHandler}/>}
       </Card>
       <View>
         <FlatList data={cartItems}
@@ -52,7 +70,6 @@ CartScreen.navigationOptions = {
 const styles = StyleSheet.create({
   screen: {
     margin: 20,
-
   },
   summary: {
     flexDirection: 'row',

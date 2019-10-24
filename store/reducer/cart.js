@@ -1,8 +1,8 @@
 import { createReducer } from 'redux-starter-kit'
 import cartActions from '../action/cart'
-import orderActions from '../action/order'
+import * as orderActions from '../action/order'
 import CartItem from '../../models/cart-item'
-import productActions from '../action/products'
+import * as productActions from '../action/products'
 
 const initialStatus = {
   items: {},
@@ -49,7 +49,7 @@ function onProductItemDeletedHandler (state, action) {
 const cartReducer = createReducer(initialStatus, {
   [cartActions.addItemToCart]: (state, action) => addItemToCartHandler(state, action),
   [cartActions.deleteCartItem]: (state, action) => deleteCartItemHandler(state, action),
-  [orderActions.addOrder]: (state, action) => clearCartHandler(state, action),
+  [orderActions.createOrder]: (state, action) => clearCartHandler(state, action),
   [productActions.deleteProduct]: (state, action) => onProductItemDeletedHandler(state, action),
 })
 

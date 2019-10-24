@@ -7,11 +7,14 @@ import * as Font from 'expo-font'
 import cartReducer from './store/reducer/cart'
 import productsReducer from './store/reducer/products'
 import orderReducer from './store/reducer/order'
+import thunk from 'redux-thunk'
+import authReducer from './store/reducer/auth'
 
 const combinedReducer = {
   products: productsReducer,
   cart: cartReducer,
-  orders: orderReducer
+  orders: orderReducer,
+  auth: authReducer
 }
 
 const customizedMiddleware = getDefaultMiddleware({
@@ -20,7 +23,7 @@ const customizedMiddleware = getDefaultMiddleware({
 
 const store = configureStore({
   reducer: combinedReducer,
-  middleware: customizedMiddleware,
+  middleware: [...customizedMiddleware, thunk],
 })
 
 const fetchFonts = () => {

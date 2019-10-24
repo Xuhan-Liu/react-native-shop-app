@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc813d54-9fb7-45a5-a61f-5eb0e6c2819f" name="Default Changelist" comment="" />
+    <list default="true" id="cc813d54-9fb7-45a5-a61f-5eb0e6c2819f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/axios-shop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/UI/Input.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/StartupScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/user/AuthScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/user/EditProductScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/action/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/reducer/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/ShopNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/ShopNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/shop/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/shop/CartScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/shop/EditProductScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/shop/OrderScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/shop/OrderScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/shop/ProductsOverviewScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/shop/ProductsOverviewScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/user/UserProductsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/user/UserProductsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/action/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/action/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/action/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/action/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/reducer/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reducer/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/reducer/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reducer/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/reducer/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reducer/products.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +40,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -22,14 +50,19 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1SMv5wgiAwZuUpnLd4CaNM8GSVx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/components/UI" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="ts.external.directory.path" value="C:\Users\Deloitte\AppData\Local\JetBrains\WebStorm 2018.3.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Deloitte\Desktop\LXH\react native\react-native-shop-app\screens\user" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Deloitte\Desktop\LXH\react native\react-native-shop-app\components\UI" />
     </key>
@@ -56,11 +89,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571386100230</updated>
-      <workItem from="1571386101742" duration="29487000" />
+      <workItem from="1571386101742" duration="67129000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

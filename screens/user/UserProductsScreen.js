@@ -5,7 +5,7 @@ import ProductItem from '../../components/shop/ProductItem'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import CustomHeaderButton from '../../components/UI/HeaderButton'
 import Colors from '../../constant/Colors'
-import productActions from '../../store/action/products'
+import * as productActions from '../../store/action/products'
 
 const UserProductsScreen = props => {
   const dispatch = useDispatch()
@@ -18,7 +18,7 @@ const UserProductsScreen = props => {
   const deleteHandler = (id) => {
     Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
       { text: 'No', style: 'default' },
-      { text: 'Yes', style: 'destructive', onPress: () => dispatch(productActions.deleteProduct(id)) }
+      { text: 'Yes', style: 'destructive', onPress: () => dispatch(productActions.deleteProductsAsync(id)) }
     ])
   }
   const userProducts = useSelector(state => state.products.userProducts)

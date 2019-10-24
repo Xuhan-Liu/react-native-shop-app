@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-starter-kit'
-import orderActions from '../action/order'
+import * as orderActions from '../action/order'
 import Order from '../../models/order'
 
 const initialStatus = {
@@ -7,14 +7,19 @@ const initialStatus = {
 }
 
 const addOrderHandler = (state, action) => {
-  const cartItems = action.payload.items
-  const totalAmount = action.payload.totalAmount
-  const newOrder = new Order(new Date().toString(), cartItems, totalAmount, new Date())
+  const { items, totalAmount, id, date } = action.payload
+  const newOrder = new Order(id, items, totalAmount, date)
   state.orders.push(newOrder)
 }
 
+const setOrdersHandler = (state, action) => {
+  console.log(action.payload)
+  state.orders = action.payload
+}
+
 const orderReducer = createReducer(initialStatus, {
-  [orderActions.addOrder]: (state, action) => addOrderHandler(state, action),
+  [orderActions.createOrder]: (state, action) => addOrderHandler(state, action),
+  [orderActions.setOrders]: (state, action) => setOrdersHandler(state, action),
 })
 
 export default orderReducer

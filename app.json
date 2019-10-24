@@ -4,10 +4,10 @@
     "slug": "react-native-shop-app",
     "privacy": "public",
     "sdkVersion": "35.0.0",
+    "description": "A Shopping mobile application built with React Native",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",

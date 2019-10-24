@@ -1,13 +1,21 @@
-import React from 'react'
-import { Button, FlatList, Platform, StatusBar, View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
+import { ActivityIndicator, Button, FlatList, Platform, StatusBar, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductItem from '../../components/shop/ProductItem'
 import cartActions from '../../store/action/cart'
+import * as productsActions from '../../store/action/products'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import CustomHeaderButton from '../../components/UI/HeaderButton'
 import Colors from '../../constant/Colors'
 
 const ProductsOverviewScreen = props => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [error, setError] = useState(null)
+  const products = useSelector(state => state.products.availableProducts)
+  const dispatch = useDispatch()
+  const { navigation } = props
+
   const onSelectItemHandler = (id, title) => {
     props.navigation.navigate({
       routeName: 'ProductDetail',
@@ -17,12 +25,56 @@ const ProductsOverviewScreen = props => {
       }
     })
   }
-  const dispatch = useDispatch()
-  const products = useSelector(state => state.products.availableProducts)
+  const loadingProducts = useCallback(async () => {
+    console.log('loading data')
+    setIsRefreshing(true)
+    setError(null)
+    try {
+      await dispatch(productsActions.setProductsAsync())
+    } catch (e) {
+      setError(e)
+    }
+    setIsRefreshing(false)
+  }, [setIsLoading, setError, dispatch])
+
+  useEffect(() => {
+    setIsLoading(true)
+    loadingProducts().then(() => setIsLoading(false)
+    )
+  }, [loadingProducts, setIsLoading])
+
+  useEffect(() => {
+    const navigationSub = props.navigation.addListener('willFocus', loadingProducts)
+    return () => {
+      navigationSub.remove()
+    }
+  }, [navigation])
+
+  if (error) {
+    return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ fontSize: 18, fontFamily: 'open-sans' }}>{error}</Text>
+      <Button color={Colors.primary} title="Load Again" onPress={loadingProducts}/>
+    </View>
+  }
+
+  if (isLoading) {
+    return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size="large" color={Colors.primary}/>
+    </View>
+  }
+
+  if (!isLoading && products.length === 0) {
+    return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ fontSize: 18, fontFamily: 'open-sans' }}>No Products Found</Text>
+    </View>
+  }
+
   return (
-    <View>
-      <StatusBar barStyle={'dark-content'}/>
-      <FlatList keyExtractor={item => item.id} data={products}
+    <View style={{ flex: 1 }}>
+      <FlatList onRefresh={loadingProducts}
+                refreshing={isRefreshing}
+                keyExtractor={item => item.id}
+                data={products}
                 renderItem={itemData => (
                   <ProductItem image={itemData.item.imageUrl}
                                title={itemData.item.title}

@@ -1,11 +1,10 @@
 import { createReducer } from 'redux-starter-kit'
-import PRODUCTS from '../../constant/dummy-data'
-import productActions from '../action/products'
+import * as productActions from '../action/products'
 import Product from '../../models/product'
 
 const initialStatus = {
-  availableProducts: PRODUCTS,
-  userProducts: PRODUCTS.filter(prd => prd.ownerId === 'u1')
+  availableProducts: [],
+  userProducts: [].filter(prd => prd.ownerId === 'u1')
 }
 
 const deleteProductHandler = (state, action) => {
@@ -14,7 +13,8 @@ const deleteProductHandler = (state, action) => {
 }
 
 const createProductHandler = (state, action) => {
-  const newProduct = new Product(new Date().toString(), 'u1', action.payload.title,
+  console.log('create handler start')
+  const newProduct = new Product(action.payload.id, action.payload.ownerId, action.payload.title,
     action.payload.imageUrl, action.payload.description, action.payload.price)
   state.availableProducts.push(newProduct)
   state.userProducts.push(newProduct)
@@ -29,10 +29,16 @@ const updateProductHandler = (state, action) => {
   state.availableProducts[availableProductIndex] = updatedProduct
 }
 
+const setProductHandler = (state, action) => {
+  state.availableProducts = action.payload.products
+  state.userProducts = action.payload.products.filter(prd => prd.ownerId === action.payload.userId)
+}
+
 const productsReducer = createReducer(initialStatus, {
   [productActions.deleteProduct]: (state, action) => deleteProductHandler(state, action),
-  [productActions.createProduct]: (state, action) => createProductHandler(state, action),
+  [productActions.createProductSuccess]: (state, action) => createProductHandler(state, action),
   [productActions.updateProduct]: (state, action) => updateProductHandler(state, action),
+  [productActions.setProducts]: (state, action) => setProductHandler(state, action),
 })
 
 export default productsReducer
