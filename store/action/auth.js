@@ -13,7 +13,7 @@ export const signUp = createAction('auth/sign_up')
 export const signUpAsync = payload => {
   return async dispatch => {
     try {
-      const apiKey = 'AIzaSyDZfUaiYarWmMLnhMfzYFYPOo3wqjhLox0'
+      const apiKey = ''
       const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
         method: 'POST',
         headers: {
@@ -40,7 +40,7 @@ export const login = createAction('auth/login')
 export const loginAsync = payload => {
   return async dispatch => {
     try {
-      const apiKey = 'AIzaSyDZfUaiYarWmMLnhMfzYFYPOo3wqjhLox0'
+      const apiKey = ''
       const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
         {
           method: 'POST',
